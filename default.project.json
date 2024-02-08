@@ -1,6 +1,6 @@
 {
 	"name": "tarmac-upload",
 	"tree": {
-		"$path": "silence_lsp"
+		"$path": ".vscode/silence_lsp.lua"
 	}
 }
