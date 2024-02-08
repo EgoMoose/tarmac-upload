@@ -1,0 +1,7 @@
+base: roblox
+name: lune-patch
+globals:
+  # fixes lune requires
+  require:
+    args:
+      - type: any
