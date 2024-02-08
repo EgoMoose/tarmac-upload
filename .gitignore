@@ -2,7 +2,11 @@
 /DevPackages
 /Packages
 
-/assets
+assets/*
+output/*
+
+generated.lua
+tarmac-manifest.toml
 
 sourcemap.json
 .ds_store
