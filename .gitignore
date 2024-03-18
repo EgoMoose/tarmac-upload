@@ -2,8 +2,8 @@
 /DevPackages
 /Packages
 
-assets/*
-output/*
+assets/**/*.png
+output/**/*.rbxm
 
 generated.lua
 tarmac-manifest.toml
