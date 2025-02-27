@@ -1,5 +1,5 @@
 {
-	"name": "tarmac-upload",
+	"name": "asphalt-upload",
 	"tree": {
 		"$path": ".vscode/silence_lsp.lua"
 	}

@@ -1,0 +1,14 @@
+asset_dir = "assets"
+exclude_assets = ["**/*.gitkeep"]
+write_dir = "output"
+
+[creator]
+type = "user"
+id = 1
+api_key = ""
+
+[codegen]
+output_name = "../generated"
+typescript = false
+style = "nested"
+strip_extension = true

@@ -5,8 +5,9 @@
 assets/**/*.png
 output/**/*.rbxm
 
-generated.lua
-tarmac-manifest.toml
+asphalt.toml
+asphalt.lock.toml
+generated.luau
 
 sourcemap.json
 .ds_store

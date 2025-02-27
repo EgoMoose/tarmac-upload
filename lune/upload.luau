@@ -1,6 +1,7 @@
 --!strict
 
 local fs = require("@lune/fs")
+local serde = require("@lune/serde")
 local roblox = require("@lune/roblox")
 local process = require("@lune/process")
 local datetime = require("@lune/datetime")
@@ -48,7 +49,7 @@ local function getTimestampFilename(): string
 end
 
 local function convertToRBXM()
-	local generated = require("../generated")
+	local generated = require("../generated") :: any
 
 	-- stylua: ignore
 	local queue: { Node } = {{
@@ -121,25 +122,24 @@ local function convertToRBXM()
 	fs.writeFile(`output/{screen.Name}.rbxm`, roblox.serializeModel({ screen }))
 end
 
-local function uploadTarmac()
-	local cookie = process.args[1]
+local function uploadAsphalt()
+	local asphaltToml = serde.decode("toml", fs.readFile("asphalt.toml"))
+	local apiKey = asphaltToml.creator.api_key
 
-	if not cookie then
-		error("No auth cookie provided!")
+	if not apiKey then
+		error("No api-key provided!")
 	end
 
 	-- stylua: ignore
-	local result = process.spawn("tarmac", {
+	local result = process.spawn("asphalt", {
 		"sync",
-		"--target", "roblox",
-		"--retry", "100",
-		"--retry-delay", "60",
-		"--auth", cookie,
+		"--target", "cloud",
+		"--api-key", apiKey,
 	})
 
 	if result.ok then
 		print(result.stdout)
-		print("Tarmac successfully ran")
+		print("Asphalt successfully ran")
 	else
 		error(result.stderr)
 	end
@@ -147,4 +147,5 @@ local function uploadTarmac()
 	convertToRBXM()
 end
 
-uploadTarmac()
+assert(fs.isFile("asphalt.toml"), "No asphalt.toml found.")
+uploadAsphalt()
